@@ -3,9 +3,15 @@
 
 // ----------------------------------------------------------------------------
 void setup() {
-  size(920, 600, P2D);
+  background(0);
+  size(640, 480, P2D);
 
   kinectSetup();
+
+  // setup bodies
+  for (int i = 0; i < BODY_NUM; i++) {
+    bodyExists[i] = false;
+  }
 
   opencv = new OpenCV(this, kWidth, kHeight);
   contours = new ArrayList<Contour>();
@@ -32,13 +38,15 @@ void setup() {
     depthMap = calculateDepthMap(kWidth, kHeight, p00, pW0, p0H, pWH);
   }
 
+  depthMap = calculateDepthMap(kWidth, kHeight, p00, pW0, p0H, pWH);
   oscSetup();
   oscSetupNull() ;
 }
 
 // ----------------------------------------------------------------------------
 void draw() {
-  background(255);
+  frameRate(10);
+  background(0);
 
   // Kinect Updates
   kinectUpdate();
@@ -71,8 +79,8 @@ void displayImages() {
   image(depthOutput, kWidth, kHeight);
   popMatrix();
 
-  stroke(255);
-  fill(255);
+  stroke(0);
+  fill(0);
   textSize(12);
   text("Source", 10, 25); 
   text("Pre-processed Image", kWidth/2 + 10, 25); 

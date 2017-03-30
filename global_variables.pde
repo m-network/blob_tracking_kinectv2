@@ -12,10 +12,11 @@ import netP5.*;
 
 int outPort= 8001;
 int inPort= 9000;
-String ip="10.0.1.4";
+String ip="169.254.249.73";
 
-//int kWidth, kHeight;
-boolean[] bodyExists = {false, false, false, false};
+// IMPORTANT FOR BODY NUMBER CALIBRATION --------------
+int BODY_NUM = 2;
+boolean[] bodyExists = new boolean[BODY_NUM];
 
 OpenCV opencv;
 PImage src, preProcessedImage, processedImage, contoursImage;
@@ -38,7 +39,7 @@ int threshold = 75;
 boolean useAdaptiveThreshold = true; // use basic thresholding
 int thresholdBlockSize = 671;
 int thresholdConstant = -3;
-int blobSizeThreshold = 52;
+int blobSizeThreshold = 24;
 int blurSize = 7;
 
 // Control vars

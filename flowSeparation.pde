@@ -1,7 +1,7 @@
 // Initialize sending variables
 float xPos = 0, xNeg = 0, yPos = 0, yNeg = 0;
 float lerpAmount =.1;
-float maxValue = .1;
+float maxValue = 0;
 int flowOffset = 20;
 
 // ----------------------------------------------------------------------------

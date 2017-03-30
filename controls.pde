@@ -45,6 +45,9 @@ void keyPressed() {
   if (key =='c') {
     depthMap = kinect.getRawDepth();
     println("captured blank slate");
+  } else if (key == 'a') {
+    oscSetupNull();
+    println("clearing all osc messages");
   } else if (key == 'w') {
     // write calibration file out
     byte[] b = new byte[depthMap.length];
@@ -65,49 +68,56 @@ void initControls() {
   // Slider for contrast
   cp5.addSlider("contrast")
      .setLabel("contrast")
-     .setPosition(20,50)
+     .setColorLabel(0x00000000)
+     .setPosition(20,20)
      .setRange(0.0,6.0)
      ;
    
   // Slider for threshold
   cp5.addSlider("threshold")
      .setLabel("threshold")
-     .setPosition(20,110)
+     .setColorLabel(0x00000000)
+     .setPosition(20,40)
      .setRange(0,255)
      ;
 
   // Toggle to activae adaptive threshold
   cp5.addToggle("toggleAdaptiveThreshold")
      .setLabel("use adaptive threshold")
+     .setColorLabel(0x00000000)
      .setSize(10,10)
-     .setPosition(20,144)
+     .setPosition(20,55)
      ;
    
   // Slider for adaptive threshold block size
   cp5.addSlider("thresholdBlockSize")
      .setLabel("a.t. block size")
-     .setPosition(20,180)
+     .setColorLabel(0x00000000)
+     .setPosition(20,80)
      .setRange(1,700)
      ;
    
   // Slider for adaptive threshold constant
   cp5.addSlider("thresholdConstant")
      .setLabel("a.t. constant")
-     .setPosition(20,200)
+     .setColorLabel(0x00000000)
+     .setPosition(20,100)
      .setRange(-100,100)
      ;
 
   // Slider for blur size
   cp5.addSlider("blurSize")
      .setLabel("blur size")
-     .setPosition(20,260)
+     .setColorLabel(0x00000000)
+     .setPosition(20,120)
      .setRange(1,20)
      ;
    
   // Slider for minimum blob size
   cp5.addSlider("blobSizeThreshold")
      .setLabel("min blob size")
-     .setPosition(20,290)
+     .setColorLabel(0x00000000)
+     .setPosition(20,140)
      .setRange(0,60)
      ;
    

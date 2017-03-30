@@ -1,6 +1,7 @@
 // Messages
 OscP5 oscP5;
 NetAddress myRemoteLocation;
+offsetBody = 1;
 
 // ----------------------------------------------------------------------------
 void oscSetup() {
@@ -11,7 +12,7 @@ void oscSetup() {
 // ----------------------------------------------------------------------------
 void sendData(int c) {
   /* in the following different ways of creating osc messages are shown by example */
-  OscMessage myMessage = new OscMessage("/body" + c);
+  OscMessage myMessage = new OscMessage("/" + (c+offsetBody));
 
   myMessage.add(xPos);
   myMessage.add(xNeg);
@@ -27,7 +28,7 @@ void sendData(int c) {
 // ----------------------------------------------------------------------------
 void sendData(int c, int m) {
   /* in the following different ways of creating osc messages are shown by example */
-  OscMessage myMessage = new OscMessage("/body" + c);
+  OscMessage myMessage = new OscMessage("/" + (c+offsetBody));
 
   myMessage.add(xPos);
   myMessage.add(xNeg);
@@ -35,7 +36,7 @@ void sendData(int c, int m) {
   myMessage.add(yNeg);
   myMessage.add(m);
 
-  //println(myMessage);
+  println(myMessage);
 
   /* send the message */
   oscP5.send(myMessage, myRemoteLocation);
@@ -43,7 +44,7 @@ void sendData(int c, int m) {
 
 // ----------------------------------------------------------------------------
 void oscSendEmpty(int v) {
-  OscMessage myMessage = new OscMessage("/body" + v);
+  OscMessage myMessage = new OscMessage("/" + (v+offsetBody));
   myMessage.add(0);
   myMessage.add(0);
   myMessage.add(0);
@@ -53,7 +54,7 @@ void oscSendEmpty(int v) {
 
 // ----------------------------------------------------------------------------
 void oscSetupNull() {
-  for (int i = 0; i < 4; i++) {
+  for (int i = 0; i < BODY_NUM; i++) {
     oscSendEmpty(i);
   }
 }

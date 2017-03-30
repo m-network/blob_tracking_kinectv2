@@ -12,7 +12,8 @@ int maxDepth =  3600; //4.5m
 int[] rawDepth;
 
 // All points start at 1300
-int p00 = 3340, pW0 = 4620, p0H = 3600, pWH = 4600;
+//int p00 = 3340, pW0 = 4620, p0H = 3600, pWH = 4600;
+int p00 = 9000, pW0 = 9000, p0H = 9000, pWH = 9000;
 
 int kWidth, kHeight;
 
@@ -42,7 +43,7 @@ void kinectSetup() {
 }
 
 void kinectUpdate() {
-  background(255);
+  background(0);
   // Draw the raw image
   //image(kinect2.getDepthImage(), 0, 50);
 

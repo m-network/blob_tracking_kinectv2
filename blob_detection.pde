@@ -27,11 +27,11 @@ class Blob {
     this.contour = new Contour(parent, c.pointMat);
 
     // Assign the bodyId to the first open slot it finds
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < BODY_NUM; i++) {
       if (!bodyExists[i]) {
         bodyId = i;
         bodyExists[i] = true;
-        println("taking slot ", i);
+        println("TAKING BODY ", i+offsetBody);
         return;
       }
     }
@@ -48,12 +48,12 @@ class Blob {
     Rectangle r = contour.getBoundingBox();
 
     float opacity = map(timer, 0, initTimer, 0, 127);
-    fill(255, opacity);
+    fill(0, opacity);
     stroke(0, 0, 255);
     float x = r.x;
     float y = r.y;
     rect(x, y, r.width, r.height);
-    fill(255, 2*opacity);
+    fill(100, 2*opacity);
     textSize(26);
     text(""+id, x+10, y+30);
   }
@@ -97,6 +97,7 @@ void detectBlobs() {
   // SCENARIO 1 
   // blobList is empty
   if (blobList.isEmpty()) {
+    oscSetupNull();
     // Just make a Blob object for every face Rectangle
     for (int i = 0; i < newBlobContours.size(); i++) {
       //println("+++ New blob detected with ID: " + blobCount);
@@ -182,7 +183,7 @@ void detectBlobs() {
     if (b.delete) {
       blobList.remove(i);
       bodyExists[b.bodyId] = false;
-      println("body ", b.bodyId, " exited");
+      println("EXITING BODY", (b.bodyId + offsetBody));
       oscSendEmpty(b.bodyId);
     }
   }
